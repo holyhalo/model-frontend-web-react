@@ -1,8 +1,10 @@
+import { Text } from '@mantine/core';
+
 export default function AppLogo({ fontSize = 'text-4xl' }: { fontSize?: string }) {
     return (
       <div className={`${fontSize} font-bold leading-none`}>
-        <span className="text-yellow-400">holy</span>
-        <span className="text-sky-400">halo</span>
+        <Text component="span" c="accent.6" inherit>holy</Text>
+        <Text component="span" c="brand.6" inherit>halo</Text>
       </div>
     )
   }

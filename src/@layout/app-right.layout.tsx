@@ -100,6 +100,12 @@ function AppRightBody() {
 function Dropdown() {
   const [$image_is_loaded, $_image_is_loaded] = useState(false)
 
+  const handle_logout = () => {
+    localStorage.clear();
+
+    window.location.reload()
+  };
+
   return (
     <Menu shadow="md" width={155} position="top-end">
       <Menu.Target>
@@ -134,11 +140,12 @@ function Dropdown() {
             <span className="text-[#444] capitalize">settings</span>
           </Menu.Item>
         </Link>
-        <a role="button" aria-label="sign out">
-          <Menu.Item leftSection={<LogOut size={20} className="text-red-500" />}>
-            <span className="text-red-500 capitalize">sign out</span>
-          </Menu.Item>
-        </a>
+        <Menu.Item 
+          leftSection={<LogOut size={20} className="text-red-500" />}
+          onClick={handle_logout}
+        >
+          <span className="text-red-500 capitalize">sign out</span>
+        </Menu.Item>
       </Menu.Dropdown>
     </Menu>
   )

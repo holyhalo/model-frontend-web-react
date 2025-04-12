@@ -86,6 +86,7 @@ export default function AppNavbar() {
 function get_opened_accordion_item(pathname: string): string[] {
   if (['/parents', '/students', '/teachers', '/administrators'].includes(pathname)) return ['item-0']
   if (['/incomes', '/charges'].includes(pathname)) return ['item-1']
+  if (['/settings', '/settings/update-profile', '/settings/update-password'].includes(pathname)) return ['item-2']
   return []
 }
 
@@ -93,7 +94,6 @@ function get_links() {
   const top_links = [
     { path: '/', title: 'home', icon: <Home size={22} strokeWidth={2.2} /> },
     { path: '/profile', title: 'my profile', icon: <CircleUser size={22} strokeWidth={2.2} /> },
-    { path: '/settings', title: 'settings', icon: <Settings size={22} strokeWidth={2.2} /> },
     { path: '/explore', title: 'explore', icon: <Telescope size={22} strokeWidth={2.2} /> },
     { path: '/ranking', title: 'ranking', icon: <Trophy size={22} strokeWidth={2.2} /> },
     { path: '/rewards', title: 'rewards', icon: <Gift size={22} strokeWidth={2.2} /> },
@@ -118,6 +118,14 @@ function get_links() {
       sublinks: [
         { path: '/incomes', title: 'incomes' },
         { path: '/charges', title: 'charges' },
+      ]
+    },
+    {
+      title: 'settings',
+      icon: <Settings size={20} strokeWidth={2.2} />,
+      sublinks: [
+        { path: '/settings/update-profile', title: 'update my profile' },
+        { path: '/settings/update-password', title: 'update password' },
       ]
     },
   ]

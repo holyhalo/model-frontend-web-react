@@ -1,36 +1,63 @@
 import { useForm } from '@mantine/form'
-import { TextInput, Button, Stack } from '@mantine/core'
+import { TextInput, Button } from '@mantine/core'
 
-export interface ForgotPasswordFormValues {
-  email: string
-}
-
-export default function ForgotPasswordForm() {
-  const form = useForm<ForgotPasswordFormValues>({
+export default function FormForgotPassword() {
+  const $form = useForm({
     initialValues: {
       email: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+      email: (value) => {
+        if (!value) return 'Email is required';
+        if (!/^\S+@\S+$/.test(value)) return 'Invalid email address';
+        return null;
+      },
     },
-  })
+  });
 
-  const handleSubmit = (values: ForgotPasswordFormValues) => {
-    console.log(values)
-  }
+  const handle_submit = (values: typeof $form.values) => {
+    console.log(values);
+    // TODO: Implement password reset logic
+  };
+
+  const input_styles = {
+    input: {
+      backgroundColor: 'white',
+      height: '2.8125rem',
+      fontSize: '1rem'
+    },
+    label: {
+      fontSize: '0.875rem',
+      marginBottom: '0.25rem'
+    }
+  };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Stack gap="md">
-        <TextInput
-          required
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps('email')}
-        />
+    <form onSubmit={$form.onSubmit(handle_submit)}>
+      <TextInput
+        withAsterisk={false}
+        label="Email"
+        placeholder="your@email.com"
+        mb="md"
+        styles={input_styles}
+        {...$form.getInputProps('email')}
+      />
 
-        <Button type="submit">Reset Password</Button>
-      </Stack>
+      <Button 
+        type="submit" 
+        fullWidth 
+        styles={{ 
+          root: {
+            padding: '0.875rem 1rem'
+          },
+          label: { 
+            textTransform: 'uppercase',
+            fontWeight: 900
+          } 
+        }}
+      >
+        Reset Password
+      </Button>
     </form>
-  )
+  );
 } 

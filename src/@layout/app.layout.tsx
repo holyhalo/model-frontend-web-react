@@ -1,5 +1,6 @@
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import { Providers } from './providers.layout'
+import AppLoader from './app-loader.layout'
 
 import { routeTree } from '../routeTree.gen'
 
@@ -11,9 +12,7 @@ const router = createRouter({
 export default function App() {
   return (
     <Providers>
-      <div className="w-full min-h-full px-[12.5rem] pt-[.4rem] pb-[8rem]">
-        <RouterProvider router={router} />
-      </div>
+      <RouterProvider router={router} defaultPendingComponent={AppLoader} />
     </Providers>
   )
 }

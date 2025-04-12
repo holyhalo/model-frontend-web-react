@@ -1,46 +1,85 @@
-import { useForm } from '@mantine/form'
-import { TextInput, PasswordInput, Button, Stack } from '@mantine/core'
+import { TextInput, PasswordInput, Button } from '@mantine/core';
+import { useForm } from '@mantine/form';
 
-export interface SignInFormValues {
-  email: string
-  password: string
-}
-
-export default function SignInForm() {
-  const form = useForm<SignInFormValues>({
+export default function FormSignIn() {
+  const $form = useForm({
     initialValues: {
       email: '',
       password: '',
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
-      password: (value) => (value.length < 6 ? 'Password should be at least 6 characters' : null),
+      email: (value) => {
+        if (!value) return 'Email is required';
+        if (!/^\S+@\S+$/.test(value)) return 'Invalid email address';
+        return null;
+      },
+      password: (value) => {
+        if (!value) return 'Password is required';
+        return null;
+      },
     },
-  })
+  });
 
-  const handleSubmit = (values: SignInFormValues) => {
-    console.log(values)
-  }
+  const handle_submit = (values: typeof $form.values) => {
+    // TODO: Replace with actual API call
+    const mock_user = {
+      id: '123',
+      email: values.email,
+      name: 'John Doe',
+      avatar: '/image.jpg'
+    };
+
+    // Store user info
+    localStorage.setItem('id', mock_user.id);
+    localStorage.setItem('email', mock_user.email);
+    localStorage.setItem('name', mock_user.name);
+    localStorage.setItem('avatar', mock_user.avatar);
+
+    window.location.reload()
+  };
+
+  const input_styles = {
+    input: {
+      backgroundColor: '#f2f4f7'
+    }
+  };
 
   return (
-    <form onSubmit={form.onSubmit(handleSubmit)}>
-      <Stack gap="md">
-        <TextInput
-          required
-          label="Email"
-          placeholder="your@email.com"
-          {...form.getInputProps('email')}
-        />
+    <form onSubmit={$form.onSubmit(handle_submit)}>
+      <TextInput
+        withAsterisk={false}
+        placeholder="Email address or phone number"
+        mb="md"
+        size="lg"
+        styles={input_styles}
+        {...$form.getInputProps('email')}
+      />
 
-        <PasswordInput
-          required
-          label="Password"
-          placeholder="Your password"
-          {...form.getInputProps('password')}
-        />
+      <PasswordInput
+        withAsterisk={false}
+        placeholder="Password"
+        mb="md"
+        size="lg"
+        styles={input_styles}
+        {...$form.getInputProps('password')}
+      />
 
-        <Button type="submit">Sign in</Button>
-      </Stack>
+      <Button 
+        type="submit" 
+        fullWidth 
+        size="lg"
+        styles={{ 
+          root: {
+            padding: '0.875rem 1rem'
+          },
+          label: { 
+            textTransform: 'uppercase',
+            fontWeight: 900
+          } 
+        }}
+      >
+        Sign in
+      </Button>
     </form>
-  )
-} 
+  );
+}
