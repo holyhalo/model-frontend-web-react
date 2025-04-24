@@ -1,6 +1,12 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import ViewSettingsUpdateProfile from '@view/settings/update-profile.view';
+import FormUpdateProfile from '@form/settings/update-profile.form';
 
 export const Route = createLazyFileRoute('/settings/update-profile')({
-  component: ViewSettingsUpdateProfile
+  component: () => {
+    return (
+      <div className="max-w-[40rem] mx-auto">
+        <FormUpdateProfile />
+      </div>
+    );
+  }
 });

@@ -1,6 +1,12 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import AboutView from '@view/about.view'
+import { Title } from '@mantine/core'
 
 export const Route = createLazyFileRoute('/about')({
-  component: () => <AboutView />,
+  component: () => {
+    return (
+      <div className="p-4">
+        <Title>About Page</Title>
+      </div>
+    )
+  }
 })

@@ -17,9 +17,9 @@ export default defineConfig({
       '@api': '/src/@api',
       '@layout': '/src/@layout',
       '@lib': '/src/@lib',
-      '@view': '/src/@view',
       '@lang': '/src/@lang',
-      '@form': '/src/@form'
+      '@form': '/src/@form',
+      '@routes': '/src/@routes'
     }
   }
 })

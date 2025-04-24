@@ -28,7 +28,7 @@
       "@api/*": ["src/@api/*"],
       "@layout/*": ["src/@layout/*"],
       "@lib/*": ["src/@lib/*"],
-      "@view/*": ["src/@view/*"],
+      "@routes/*": ["src/@routes/*"],
       "@lang/*": ["src/@lang/*"],
       "@form/*": ["src/@form/*"]
     }
