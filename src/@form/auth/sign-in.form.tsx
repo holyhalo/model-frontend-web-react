@@ -20,14 +20,13 @@ export default function FormSignIn() {
     },
   });
 
-  const handle_submit = (values: typeof $form.values) => {
-    // TODO: Replace with actual API call
+  const handle_submit = async(values: typeof $form.values) => {
     const mock_user = {
-      id: '123',
-      email: values.email,
-      name: 'John Doe',
-      avatar: '/image.jpg'
-    };
+        id: '123',
+        email: values.email,
+        name: 'John Doe',
+        avatar: '/image.jpg'
+      };
 
     // Store user info
     localStorage.setItem('id', mock_user.id);

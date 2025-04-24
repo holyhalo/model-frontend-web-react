@@ -1,5 +1,5 @@
 import { createLazyFileRoute, Link } from '@tanstack/react-router';
-import { Container, Title, Anchor, Box } from '@mantine/core';
+import { Container, Anchor, Box } from '@mantine/core';
 import FormSignIn from '@form/auth/sign-in.form';
 import AppLogo from '@layout/app-logo.layout';
 

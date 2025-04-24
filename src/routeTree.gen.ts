@@ -16,85 +16,96 @@ import { Route as rootRoute } from './@routes/__root'
 
 // Create Virtual Routes
 
-const ProfileLazyImport = createFileRoute('/profile')()
-const AboutLazyImport = createFileRoute('/about')()
-const IndexLazyImport = createFileRoute('/')()
-const SettingsIndexLazyImport = createFileRoute('/settings/')()
-const SettingsUpdateProfileLazyImport = createFileRoute(
+const ProfileRouteLazyImport = createFileRoute('/profile')()
+const AboutRouteLazyImport = createFileRoute('/about')()
+const IndexRouteLazyImport = createFileRoute('/')()
+const SettingsIndexRouteLazyImport = createFileRoute('/settings/')()
+const SettingsUpdateProfileRouteLazyImport = createFileRoute(
   '/settings/update-profile',
 )()
-const SettingsUpdatePasswordLazyImport = createFileRoute(
+const SettingsUpdatePasswordRouteLazyImport = createFileRoute(
   '/settings/update-password',
 )()
-const AuthSignUpLazyImport = createFileRoute('/auth/sign-up')()
-const AuthSignInLazyImport = createFileRoute('/auth/sign-in')()
-const AuthForgotPasswordLazyImport = createFileRoute('/auth/forgot-password')()
+const AuthSignUpRouteLazyImport = createFileRoute('/auth/sign-up')()
+const AuthSignInRouteLazyImport = createFileRoute('/auth/sign-in')()
+const AuthForgotPasswordRouteLazyImport = createFileRoute(
+  '/auth/forgot-password',
+)()
 
 // Create/Update Routes
 
-const ProfileLazyRoute = ProfileLazyImport.update({
+const ProfileRouteLazyRoute = ProfileRouteLazyImport.update({
   id: '/profile',
   path: '/profile',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./@routes/profile.lazy').then((d) => d.Route))
+} as any).lazy(() =>
+  import('./@routes/profile.route.lazy').then((d) => d.Route),
+)
 
-const AboutLazyRoute = AboutLazyImport.update({
+const AboutRouteLazyRoute = AboutRouteLazyImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./@routes/about.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./@routes/about.route.lazy').then((d) => d.Route))
 
-const IndexLazyRoute = IndexLazyImport.update({
+const IndexRouteLazyRoute = IndexRouteLazyImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./@routes/index.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./@routes/index.route.lazy').then((d) => d.Route))
 
-const SettingsIndexLazyRoute = SettingsIndexLazyImport.update({
+const SettingsIndexRouteLazyRoute = SettingsIndexRouteLazyImport.update({
   id: '/settings/',
   path: '/settings/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/settings/index.lazy').then((d) => d.Route),
+  import('./@routes/settings/index.route.lazy').then((d) => d.Route),
 )
 
-const SettingsUpdateProfileLazyRoute = SettingsUpdateProfileLazyImport.update({
-  id: '/settings/update-profile',
-  path: '/settings/update-profile',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./@routes/settings/update-profile.lazy').then((d) => d.Route),
-)
+const SettingsUpdateProfileRouteLazyRoute =
+  SettingsUpdateProfileRouteLazyImport.update({
+    id: '/settings/update-profile',
+    path: '/settings/update-profile',
+    getParentRoute: () => rootRoute,
+  } as any).lazy(() =>
+    import('./@routes/settings/update-profile.route.lazy').then((d) => d.Route),
+  )
 
-const SettingsUpdatePasswordLazyRoute = SettingsUpdatePasswordLazyImport.update(
-  {
+const SettingsUpdatePasswordRouteLazyRoute =
+  SettingsUpdatePasswordRouteLazyImport.update({
     id: '/settings/update-password',
     path: '/settings/update-password',
     getParentRoute: () => rootRoute,
-  } as any,
-).lazy(() =>
-  import('./@routes/settings/update-password.lazy').then((d) => d.Route),
-)
+  } as any).lazy(() =>
+    import('./@routes/settings/update-password.route.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 
-const AuthSignUpLazyRoute = AuthSignUpLazyImport.update({
+const AuthSignUpRouteLazyRoute = AuthSignUpRouteLazyImport.update({
   id: '/auth/sign-up',
   path: '/auth/sign-up',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./@routes/auth/sign-up.lazy').then((d) => d.Route))
+} as any).lazy(() =>
+  import('./@routes/auth/sign-up.route.lazy').then((d) => d.Route),
+)
 
-const AuthSignInLazyRoute = AuthSignInLazyImport.update({
+const AuthSignInRouteLazyRoute = AuthSignInRouteLazyImport.update({
   id: '/auth/sign-in',
   path: '/auth/sign-in',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./@routes/auth/sign-in.lazy').then((d) => d.Route))
-
-const AuthForgotPasswordLazyRoute = AuthForgotPasswordLazyImport.update({
-  id: '/auth/forgot-password',
-  path: '/auth/forgot-password',
-  getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/auth/forgot-password.lazy').then((d) => d.Route),
+  import('./@routes/auth/sign-in.route.lazy').then((d) => d.Route),
 )
+
+const AuthForgotPasswordRouteLazyRoute =
+  AuthForgotPasswordRouteLazyImport.update({
+    id: '/auth/forgot-password',
+    path: '/auth/forgot-password',
+    getParentRoute: () => rootRoute,
+  } as any).lazy(() =>
+    import('./@routes/auth/forgot-password.route.lazy').then((d) => d.Route),
+  )
 
 // Populate the FileRoutesByPath interface
 
@@ -104,63 +115,63 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
+      preLoaderRoute: typeof IndexRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
+      preLoaderRoute: typeof AboutRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/profile': {
       id: '/profile'
       path: '/profile'
       fullPath: '/profile'
-      preLoaderRoute: typeof ProfileLazyImport
+      preLoaderRoute: typeof ProfileRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/auth/forgot-password': {
       id: '/auth/forgot-password'
       path: '/auth/forgot-password'
       fullPath: '/auth/forgot-password'
-      preLoaderRoute: typeof AuthForgotPasswordLazyImport
+      preLoaderRoute: typeof AuthForgotPasswordRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/auth/sign-in': {
       id: '/auth/sign-in'
       path: '/auth/sign-in'
       fullPath: '/auth/sign-in'
-      preLoaderRoute: typeof AuthSignInLazyImport
+      preLoaderRoute: typeof AuthSignInRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/auth/sign-up': {
       id: '/auth/sign-up'
       path: '/auth/sign-up'
       fullPath: '/auth/sign-up'
-      preLoaderRoute: typeof AuthSignUpLazyImport
+      preLoaderRoute: typeof AuthSignUpRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/settings/update-password': {
       id: '/settings/update-password'
       path: '/settings/update-password'
       fullPath: '/settings/update-password'
-      preLoaderRoute: typeof SettingsUpdatePasswordLazyImport
+      preLoaderRoute: typeof SettingsUpdatePasswordRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/settings/update-profile': {
       id: '/settings/update-profile'
       path: '/settings/update-profile'
       fullPath: '/settings/update-profile'
-      preLoaderRoute: typeof SettingsUpdateProfileLazyImport
+      preLoaderRoute: typeof SettingsUpdateProfileRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/settings/': {
       id: '/settings/'
       path: '/settings'
       fullPath: '/settings'
-      preLoaderRoute: typeof SettingsIndexLazyImport
+      preLoaderRoute: typeof SettingsIndexRouteLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -169,40 +180,40 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
-  '/profile': typeof ProfileLazyRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordLazyRoute
-  '/auth/sign-in': typeof AuthSignInLazyRoute
-  '/auth/sign-up': typeof AuthSignUpLazyRoute
-  '/settings/update-password': typeof SettingsUpdatePasswordLazyRoute
-  '/settings/update-profile': typeof SettingsUpdateProfileLazyRoute
-  '/settings': typeof SettingsIndexLazyRoute
+  '/': typeof IndexRouteLazyRoute
+  '/about': typeof AboutRouteLazyRoute
+  '/profile': typeof ProfileRouteLazyRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRouteLazyRoute
+  '/auth/sign-in': typeof AuthSignInRouteLazyRoute
+  '/auth/sign-up': typeof AuthSignUpRouteLazyRoute
+  '/settings/update-password': typeof SettingsUpdatePasswordRouteLazyRoute
+  '/settings/update-profile': typeof SettingsUpdateProfileRouteLazyRoute
+  '/settings': typeof SettingsIndexRouteLazyRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
-  '/profile': typeof ProfileLazyRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordLazyRoute
-  '/auth/sign-in': typeof AuthSignInLazyRoute
-  '/auth/sign-up': typeof AuthSignUpLazyRoute
-  '/settings/update-password': typeof SettingsUpdatePasswordLazyRoute
-  '/settings/update-profile': typeof SettingsUpdateProfileLazyRoute
-  '/settings': typeof SettingsIndexLazyRoute
+  '/': typeof IndexRouteLazyRoute
+  '/about': typeof AboutRouteLazyRoute
+  '/profile': typeof ProfileRouteLazyRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRouteLazyRoute
+  '/auth/sign-in': typeof AuthSignInRouteLazyRoute
+  '/auth/sign-up': typeof AuthSignUpRouteLazyRoute
+  '/settings/update-password': typeof SettingsUpdatePasswordRouteLazyRoute
+  '/settings/update-profile': typeof SettingsUpdateProfileRouteLazyRoute
+  '/settings': typeof SettingsIndexRouteLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
-  '/profile': typeof ProfileLazyRoute
-  '/auth/forgot-password': typeof AuthForgotPasswordLazyRoute
-  '/auth/sign-in': typeof AuthSignInLazyRoute
-  '/auth/sign-up': typeof AuthSignUpLazyRoute
-  '/settings/update-password': typeof SettingsUpdatePasswordLazyRoute
-  '/settings/update-profile': typeof SettingsUpdateProfileLazyRoute
-  '/settings/': typeof SettingsIndexLazyRoute
+  '/': typeof IndexRouteLazyRoute
+  '/about': typeof AboutRouteLazyRoute
+  '/profile': typeof ProfileRouteLazyRoute
+  '/auth/forgot-password': typeof AuthForgotPasswordRouteLazyRoute
+  '/auth/sign-in': typeof AuthSignInRouteLazyRoute
+  '/auth/sign-up': typeof AuthSignUpRouteLazyRoute
+  '/settings/update-password': typeof SettingsUpdatePasswordRouteLazyRoute
+  '/settings/update-profile': typeof SettingsUpdateProfileRouteLazyRoute
+  '/settings/': typeof SettingsIndexRouteLazyRoute
 }
 
 export interface FileRouteTypes {
@@ -243,27 +254,27 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
-  AboutLazyRoute: typeof AboutLazyRoute
-  ProfileLazyRoute: typeof ProfileLazyRoute
-  AuthForgotPasswordLazyRoute: typeof AuthForgotPasswordLazyRoute
-  AuthSignInLazyRoute: typeof AuthSignInLazyRoute
-  AuthSignUpLazyRoute: typeof AuthSignUpLazyRoute
-  SettingsUpdatePasswordLazyRoute: typeof SettingsUpdatePasswordLazyRoute
-  SettingsUpdateProfileLazyRoute: typeof SettingsUpdateProfileLazyRoute
-  SettingsIndexLazyRoute: typeof SettingsIndexLazyRoute
+  IndexRouteLazyRoute: typeof IndexRouteLazyRoute
+  AboutRouteLazyRoute: typeof AboutRouteLazyRoute
+  ProfileRouteLazyRoute: typeof ProfileRouteLazyRoute
+  AuthForgotPasswordRouteLazyRoute: typeof AuthForgotPasswordRouteLazyRoute
+  AuthSignInRouteLazyRoute: typeof AuthSignInRouteLazyRoute
+  AuthSignUpRouteLazyRoute: typeof AuthSignUpRouteLazyRoute
+  SettingsUpdatePasswordRouteLazyRoute: typeof SettingsUpdatePasswordRouteLazyRoute
+  SettingsUpdateProfileRouteLazyRoute: typeof SettingsUpdateProfileRouteLazyRoute
+  SettingsIndexRouteLazyRoute: typeof SettingsIndexRouteLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
-  AboutLazyRoute: AboutLazyRoute,
-  ProfileLazyRoute: ProfileLazyRoute,
-  AuthForgotPasswordLazyRoute: AuthForgotPasswordLazyRoute,
-  AuthSignInLazyRoute: AuthSignInLazyRoute,
-  AuthSignUpLazyRoute: AuthSignUpLazyRoute,
-  SettingsUpdatePasswordLazyRoute: SettingsUpdatePasswordLazyRoute,
-  SettingsUpdateProfileLazyRoute: SettingsUpdateProfileLazyRoute,
-  SettingsIndexLazyRoute: SettingsIndexLazyRoute,
+  IndexRouteLazyRoute: IndexRouteLazyRoute,
+  AboutRouteLazyRoute: AboutRouteLazyRoute,
+  ProfileRouteLazyRoute: ProfileRouteLazyRoute,
+  AuthForgotPasswordRouteLazyRoute: AuthForgotPasswordRouteLazyRoute,
+  AuthSignInRouteLazyRoute: AuthSignInRouteLazyRoute,
+  AuthSignUpRouteLazyRoute: AuthSignUpRouteLazyRoute,
+  SettingsUpdatePasswordRouteLazyRoute: SettingsUpdatePasswordRouteLazyRoute,
+  SettingsUpdateProfileRouteLazyRoute: SettingsUpdateProfileRouteLazyRoute,
+  SettingsIndexRouteLazyRoute: SettingsIndexRouteLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -288,31 +299,31 @@ export const routeTree = rootRoute
       ]
     },
     "/": {
-      "filePath": "index.lazy.tsx"
+      "filePath": "index.route.lazy.tsx"
     },
     "/about": {
-      "filePath": "about.lazy.tsx"
+      "filePath": "about.route.lazy.tsx"
     },
     "/profile": {
-      "filePath": "profile.lazy.tsx"
+      "filePath": "profile.route.lazy.tsx"
     },
     "/auth/forgot-password": {
-      "filePath": "auth/forgot-password.lazy.tsx"
+      "filePath": "auth/forgot-password.route.lazy.tsx"
     },
     "/auth/sign-in": {
-      "filePath": "auth/sign-in.lazy.tsx"
+      "filePath": "auth/sign-in.route.lazy.tsx"
     },
     "/auth/sign-up": {
-      "filePath": "auth/sign-up.lazy.tsx"
+      "filePath": "auth/sign-up.route.lazy.tsx"
     },
     "/settings/update-password": {
-      "filePath": "settings/update-password.lazy.tsx"
+      "filePath": "settings/update-password.route.lazy.tsx"
     },
     "/settings/update-profile": {
-      "filePath": "settings/update-profile.lazy.tsx"
+      "filePath": "settings/update-profile.route.lazy.tsx"
     },
     "/settings/": {
-      "filePath": "settings/index.lazy.tsx"
+      "filePath": "settings/index.route.lazy.tsx"
     }
   }
 }
