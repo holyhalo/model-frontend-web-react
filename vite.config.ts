@@ -19,7 +19,8 @@ export default defineConfig({
       '@lib': '/src/@lib',
       '@lang': '/src/@lang',
       '@form': '/src/@form',
-      '@routes': '/src/@routes'
+      '@routes': '/src/@routes',
+      '@ui': '/src/@ui'
     }
   }
 })

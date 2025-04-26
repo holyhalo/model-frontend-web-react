@@ -1,5 +1,6 @@
-import { TextInput, PasswordInput, Button, Group } from '@mantine/core';
+import { TextInput, PasswordInput, Button, Group, Text, Input } from '@mantine/core';
 import { useForm } from '@mantine/form';
+import InputPhoneCountryCode from '@ui/input-phone-country-code.ui';
 
 export default function FormSignUp() {
   const $form = useForm({
@@ -7,8 +8,9 @@ export default function FormSignUp() {
       first_name: '',
       last_name: '',
       email: '',
+      user_phone_country_code: '+212', // default Morocco
+      phone: '',
       password: '',
-      confirm_password: '',
     },
     validate: {
       first_name: (value) => {
@@ -26,6 +28,11 @@ export default function FormSignUp() {
         if (!/^\S+@\S+$/.test(value)) return 'Invalid email address';
         return null;
       },
+      phone: (value) => {
+        if (!value) return 'Phone number is required';
+        if (!/^[0-9]{6,15}$/.test(value)) return 'Invalid phone number';
+        return null;
+      },
       password: (value) => {
         if (!value) return 'Password is required';
         if (value.length < 6) return 'Password must be at least 6 characters';
@@ -34,29 +41,17 @@ export default function FormSignUp() {
         if (!/[0-9]/.test(value)) return 'Password must include at least one number';
         return null;
       },
-      confirm_password: (value, values) => {
-        if (!value) return 'Please confirm your password';
-        if (value !== values.password) return 'Passwords do not match';
-        return null;
-      },
     },
   });
 
   const handle_submit = (values: typeof $form.values) => {
-    console.log(values);
-    // TODO: Implement signup logic
-  };
-
-  const input_styles = {
-    input: {
-      backgroundColor: 'white',
-      height: '2.8125rem',
-      fontSize: '1rem'
-    },
-    label: {
-      fontSize: '0.875rem',
-      marginBottom: '0.25rem'
-    }
+    console.log({
+      user_phone_country_code: values.user_phone_country_code,
+      user_phone: values.phone,
+      user_first_name: values.first_name,
+      user_last_name: values.last_name,
+      user_password: values.password,
+    });
   };
 
   return (
@@ -66,14 +61,20 @@ export default function FormSignUp() {
           withAsterisk={false}
           label="First Name"
           placeholder="John"
-          styles={input_styles}
+          classNames={{
+            input: 'bg-white h-[2.8125rem] text-base',
+            label: 'text-sm mb-1'
+          }}
           {...$form.getInputProps('first_name')}
         />
         <TextInput
           withAsterisk={false}
           label="Last Name"
           placeholder="Doe"
-          styles={input_styles}
+          classNames={{
+            input: 'bg-white h-[2.8125rem] text-base',
+            label: 'text-sm mb-1'
+          }}
           {...$form.getInputProps('last_name')}
         />
       </Group>
@@ -83,39 +84,43 @@ export default function FormSignUp() {
         label="Email"
         placeholder="your@email.com"
         mb="md"
-        styles={input_styles}
+        classNames={{
+          input: 'bg-white h-[2.8125rem] text-base',
+          label: 'text-sm mb-1'
+        }}
         {...$form.getInputProps('email')}
+      />
+
+      <InputPhoneCountryCode
+        className="bg-white"
+        countryCode={$form.values.user_phone_country_code}
+        phone={$form.values.phone}
+        onCountryCodeChange={(val) => $form.setFieldValue('user_phone_country_code', val || '+212')}
+        onPhoneChange={(val) => $form.setFieldValue('phone', val)}
+        error={$form.errors.phone ? String($form.errors.phone) : undefined}
+        label="Phone Number"
       />
 
       <PasswordInput
         withAsterisk={false}
         label="Password"
         placeholder="Create a strong password"
-        mb="md"
-        styles={input_styles}
-        {...$form.getInputProps('password')}
-      />
-
-      <PasswordInput
-        withAsterisk={false}
-        label="Confirm Password"
-        placeholder="Confirm your password"
         mb="xl"
-        styles={input_styles}
-        {...$form.getInputProps('confirm_password')}
+        classNames={{
+          input: 'bg-white h-[2.8125rem] text-base',
+          label: 'text-sm mb-1'
+        }}
+        {...$form.getInputProps('password')}
       />
 
       <Button 
         type="submit" 
         fullWidth 
-        styles={{ 
-          root: {
-            padding: '0.875rem 1rem'
-          },
-          label: { 
+        styles={{
+          label: {
             textTransform: 'uppercase',
             fontWeight: 900
-          } 
+          }
         }}
       >
         Create Account

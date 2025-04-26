@@ -47,12 +47,7 @@ export default function FormUpdatePassword() {
         <Button 
           type="submit"
           fullWidth
-          styles={{ 
-            label: { 
-              textTransform: 'uppercase',
-              fontWeight: 800
-            } 
-          }}
+          className="uppercase font-extrabold"
         >
           Update Password
         </Button>

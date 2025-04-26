@@ -1,6 +1,7 @@
-import { TextInput, Button, Group, Avatar, FileButton, Stack } from '@mantine/core';
+import { TextInput, Button, Group, Avatar, FileButton, Stack, Text, Input } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
+import InputPhoneCountryCode from '@ui/input-phone-country-code.ui';
 
 export default function FormUpdateProfile() {
   const [$avatar, $_avatar] = useState<File | null>(null);
@@ -10,7 +11,8 @@ export default function FormUpdateProfile() {
       first_name: 'John',
       last_name: 'Doe',
       email: 'john@example.com',
-      phone: '+1 234 567 890',
+      user_phone_country_code: '+212',
+      phone: '612345678',
       location: 'New York, USA',
       bio: 'Passionate full-stack developer...',
     },
@@ -18,12 +20,26 @@ export default function FormUpdateProfile() {
       first_name: (value) => value.length < 2 ? 'Name must be at least 2 characters' : null,
       last_name: (value) => value.length < 2 ? 'Name must be at least 2 characters' : null,
       email: (value) => !/^\S+@\S+$/.test(value) ? 'Invalid email' : null,
+      phone: (value) => {
+        if (!value) return 'Phone number is required';
+        if (!/^[0-9]{6,15}$/.test(value)) return 'Invalid phone number';
+        return null;
+      },
     },
   });
 
   const handle_submit = (values: typeof $form.values) => {
+    console.log({
+      user_phone_country_code: values.user_phone_country_code,
+      user_phone: values.phone,
+      first_name: values.first_name,
+      last_name: values.last_name,
+      email: values.email,
+      location: values.location,
+      bio: values.bio,
+      avatar: $avatar,
+    });
     // TODO: Implement update profile logic
-    console.log(values, $avatar);
   };
 
   return (
@@ -65,10 +81,14 @@ export default function FormUpdateProfile() {
           {...$form.getInputProps('email')}
         />
 
-        <TextInput
+        <InputPhoneCountryCode
+          className="bg-white"
+          countryCode={$form.values.user_phone_country_code}
+          phone={$form.values.phone}
+          onCountryCodeChange={(val) => $form.setFieldValue('user_phone_country_code', val || '+212')}
+          onPhoneChange={(val) => $form.setFieldValue('phone', val)}
+          error={$form.errors.phone ? String($form.errors.phone) : undefined}
           label="Phone"
-          placeholder="+1 234 567 890"
-          {...$form.getInputProps('phone')}
         />
 
         <TextInput
@@ -87,12 +107,7 @@ export default function FormUpdateProfile() {
           type="submit" 
           fullWidth 
           mt="md"
-          styles={{ 
-            label: { 
-              textTransform: 'uppercase',
-              fontWeight: 800
-            } 
-          }}
+          className="uppercase font-extrabold"
         >
           Update Profile
         </Button>

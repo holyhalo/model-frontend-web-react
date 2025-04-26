@@ -1,13 +1,25 @@
 # Project Conventions
 
-React + Bun + Mantine UI + TanStack Router + ElysiaJS application following these conventions:
+## Technology Stack
+- Bun 
+- Vite 
+- React 
+- Tailwind 
+- Shadcn UI 
+- TanStack React Router 
+- TanStack React Query 
 
-Don't use px, Use rem instead
+## Styling:
+- use tailwind classes
+- Don't use px, Use rem instead
 
-Directory structure under src/:
-@api (API), @form (Forms), @lang (i18n), @layout (Layouts), @lib (Utils), @routes (Routes)
+## Query and API:
+- use tanstack react query
 
-File naming:
+## Routing:
+- use tanstack react router
+
+## File naming:
 - Always kebab-case
 - Api: <module-name>.api.tsx
 - Lang: <file-name>.lang.tsx
@@ -15,7 +27,7 @@ File naming:
 - Forms: <component-name>.form.tsx
 - Routes: <component-name>.route.tsx or component-name>.route.lazy.tsx for lazy, (except __root file, don't add any suffix)
 
-Code naming:
+## Code naming:
 - Components: PascalCase with prefix based on type:
   - Forms: Form[Name] (FormSignUp)
   - Layouts: App[Name] (AppHeader)
@@ -25,6 +37,24 @@ Code naming:
 - States: $prefix ($user)
 - Setters: $_prefix ($_user)
 
-Exports/Imports:
+## Exports/Imports:
 - Always use default export for components
 - Use aliases (@layout/<component-name>.layout, @routes/<component-name>.route, ...)
+
+## Import Statements
+- Use default exports for Components, Libs, Forms, etc....
+- Path Aliases: Use aliases defined in `tsconfig.json` for local module imports:
+  - `@api/*`
+  - `@form/*`
+  - `@lib/*`
+  etc...
+- Import Prefixes:
+  - Form: `Form<FormName>`
+  - layout: `layout_<LayoutName>`
+  - lib: `lib_<lib_name>`
+  - api: `api_<api_name>` (default import)
+  etc...
+- External libraries use named imports.
+
+## Code Style
+- No Comments: Code should be self-explanatory; remove all `//` and `/* */` comments.

@@ -7,7 +7,7 @@ import AppBody from '@layout/app-body.layout'
 export const Route = createRootRoute({
   beforeLoad: ({ location }) => {
     const is_authenticated = localStorage.getItem('id') !== null;
-    const is_auth_page = location.pathname === '/auth/sign-in' || location.pathname === '/auth/sign-up' || location.pathname === '/auth/forgot-password'
+    const is_auth_page = location.pathname.startsWith('/auth/');
 
     if (!is_authenticated && !is_auth_page) {
       throw redirect({

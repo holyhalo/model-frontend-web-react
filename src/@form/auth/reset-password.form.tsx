@@ -40,7 +40,9 @@ export default function ResetPasswordForm() {
           {...form.getInputProps('confirmPassword')}
         />
 
-        <Button type="submit">Set New Password</Button>
+        <Button type="submit" className="uppercase font-bold">
+          Set New Password
+        </Button>
       </Stack>
     </form>
   )

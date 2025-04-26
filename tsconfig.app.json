@@ -30,8 +30,10 @@
       "@lib/*": ["src/@lib/*"],
       "@routes/*": ["src/@routes/*"],
       "@lang/*": ["src/@lang/*"],
-      "@form/*": ["src/@form/*"]
-    }
+      "@form/*": ["src/@form/*"],
+      "@ui/*": ["src/@ui/*"]
+    },
+    "types": ["bun-types"]
   },
   "include": ["src"]
 }

@@ -26,8 +26,10 @@ const SettingsUpdateProfileRouteLazyImport = createFileRoute(
 const SettingsUpdatePasswordRouteLazyImport = createFileRoute(
   '/settings/update-password',
 )()
+const AuthVerifyOtpRouteLazyImport = createFileRoute('/auth/verify-otp')()
 const AuthSignUpRouteLazyImport = createFileRoute('/auth/sign-up')()
 const AuthSignInRouteLazyImport = createFileRoute('/auth/sign-in')()
+const AuthRequestOtpRouteLazyImport = createFileRoute('/auth/request-otp')()
 const AuthForgotPasswordRouteLazyImport = createFileRoute(
   '/auth/forgot-password',
 )()
@@ -82,6 +84,14 @@ const SettingsUpdatePasswordRouteLazyRoute =
     ),
   )
 
+const AuthVerifyOtpRouteLazyRoute = AuthVerifyOtpRouteLazyImport.update({
+  id: '/auth/verify-otp',
+  path: '/auth/verify-otp',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./@routes/auth/verify-otp.route.lazy').then((d) => d.Route),
+)
+
 const AuthSignUpRouteLazyRoute = AuthSignUpRouteLazyImport.update({
   id: '/auth/sign-up',
   path: '/auth/sign-up',
@@ -96,6 +106,14 @@ const AuthSignInRouteLazyRoute = AuthSignInRouteLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
   import('./@routes/auth/sign-in.route.lazy').then((d) => d.Route),
+)
+
+const AuthRequestOtpRouteLazyRoute = AuthRequestOtpRouteLazyImport.update({
+  id: '/auth/request-otp',
+  path: '/auth/request-otp',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./@routes/auth/request-otp.route.lazy').then((d) => d.Route),
 )
 
 const AuthForgotPasswordRouteLazyRoute =
@@ -139,6 +157,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthForgotPasswordRouteLazyImport
       parentRoute: typeof rootRoute
     }
+    '/auth/request-otp': {
+      id: '/auth/request-otp'
+      path: '/auth/request-otp'
+      fullPath: '/auth/request-otp'
+      preLoaderRoute: typeof AuthRequestOtpRouteLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/auth/sign-in': {
       id: '/auth/sign-in'
       path: '/auth/sign-in'
@@ -151,6 +176,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/sign-up'
       fullPath: '/auth/sign-up'
       preLoaderRoute: typeof AuthSignUpRouteLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/verify-otp': {
+      id: '/auth/verify-otp'
+      path: '/auth/verify-otp'
+      fullPath: '/auth/verify-otp'
+      preLoaderRoute: typeof AuthVerifyOtpRouteLazyImport
       parentRoute: typeof rootRoute
     }
     '/settings/update-password': {
@@ -184,8 +216,10 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRouteLazyRoute
   '/profile': typeof ProfileRouteLazyRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRouteLazyRoute
+  '/auth/request-otp': typeof AuthRequestOtpRouteLazyRoute
   '/auth/sign-in': typeof AuthSignInRouteLazyRoute
   '/auth/sign-up': typeof AuthSignUpRouteLazyRoute
+  '/auth/verify-otp': typeof AuthVerifyOtpRouteLazyRoute
   '/settings/update-password': typeof SettingsUpdatePasswordRouteLazyRoute
   '/settings/update-profile': typeof SettingsUpdateProfileRouteLazyRoute
   '/settings': typeof SettingsIndexRouteLazyRoute
@@ -196,8 +230,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRouteLazyRoute
   '/profile': typeof ProfileRouteLazyRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRouteLazyRoute
+  '/auth/request-otp': typeof AuthRequestOtpRouteLazyRoute
   '/auth/sign-in': typeof AuthSignInRouteLazyRoute
   '/auth/sign-up': typeof AuthSignUpRouteLazyRoute
+  '/auth/verify-otp': typeof AuthVerifyOtpRouteLazyRoute
   '/settings/update-password': typeof SettingsUpdatePasswordRouteLazyRoute
   '/settings/update-profile': typeof SettingsUpdateProfileRouteLazyRoute
   '/settings': typeof SettingsIndexRouteLazyRoute
@@ -209,8 +245,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRouteLazyRoute
   '/profile': typeof ProfileRouteLazyRoute
   '/auth/forgot-password': typeof AuthForgotPasswordRouteLazyRoute
+  '/auth/request-otp': typeof AuthRequestOtpRouteLazyRoute
   '/auth/sign-in': typeof AuthSignInRouteLazyRoute
   '/auth/sign-up': typeof AuthSignUpRouteLazyRoute
+  '/auth/verify-otp': typeof AuthVerifyOtpRouteLazyRoute
   '/settings/update-password': typeof SettingsUpdatePasswordRouteLazyRoute
   '/settings/update-profile': typeof SettingsUpdateProfileRouteLazyRoute
   '/settings/': typeof SettingsIndexRouteLazyRoute
@@ -223,8 +261,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/profile'
     | '/auth/forgot-password'
+    | '/auth/request-otp'
     | '/auth/sign-in'
     | '/auth/sign-up'
+    | '/auth/verify-otp'
     | '/settings/update-password'
     | '/settings/update-profile'
     | '/settings'
@@ -234,8 +274,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/profile'
     | '/auth/forgot-password'
+    | '/auth/request-otp'
     | '/auth/sign-in'
     | '/auth/sign-up'
+    | '/auth/verify-otp'
     | '/settings/update-password'
     | '/settings/update-profile'
     | '/settings'
@@ -245,8 +287,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/profile'
     | '/auth/forgot-password'
+    | '/auth/request-otp'
     | '/auth/sign-in'
     | '/auth/sign-up'
+    | '/auth/verify-otp'
     | '/settings/update-password'
     | '/settings/update-profile'
     | '/settings/'
@@ -258,8 +302,10 @@ export interface RootRouteChildren {
   AboutRouteLazyRoute: typeof AboutRouteLazyRoute
   ProfileRouteLazyRoute: typeof ProfileRouteLazyRoute
   AuthForgotPasswordRouteLazyRoute: typeof AuthForgotPasswordRouteLazyRoute
+  AuthRequestOtpRouteLazyRoute: typeof AuthRequestOtpRouteLazyRoute
   AuthSignInRouteLazyRoute: typeof AuthSignInRouteLazyRoute
   AuthSignUpRouteLazyRoute: typeof AuthSignUpRouteLazyRoute
+  AuthVerifyOtpRouteLazyRoute: typeof AuthVerifyOtpRouteLazyRoute
   SettingsUpdatePasswordRouteLazyRoute: typeof SettingsUpdatePasswordRouteLazyRoute
   SettingsUpdateProfileRouteLazyRoute: typeof SettingsUpdateProfileRouteLazyRoute
   SettingsIndexRouteLazyRoute: typeof SettingsIndexRouteLazyRoute
@@ -270,8 +316,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRouteLazyRoute: AboutRouteLazyRoute,
   ProfileRouteLazyRoute: ProfileRouteLazyRoute,
   AuthForgotPasswordRouteLazyRoute: AuthForgotPasswordRouteLazyRoute,
+  AuthRequestOtpRouteLazyRoute: AuthRequestOtpRouteLazyRoute,
   AuthSignInRouteLazyRoute: AuthSignInRouteLazyRoute,
   AuthSignUpRouteLazyRoute: AuthSignUpRouteLazyRoute,
+  AuthVerifyOtpRouteLazyRoute: AuthVerifyOtpRouteLazyRoute,
   SettingsUpdatePasswordRouteLazyRoute: SettingsUpdatePasswordRouteLazyRoute,
   SettingsUpdateProfileRouteLazyRoute: SettingsUpdateProfileRouteLazyRoute,
   SettingsIndexRouteLazyRoute: SettingsIndexRouteLazyRoute,
@@ -291,8 +339,10 @@ export const routeTree = rootRoute
         "/about",
         "/profile",
         "/auth/forgot-password",
+        "/auth/request-otp",
         "/auth/sign-in",
         "/auth/sign-up",
+        "/auth/verify-otp",
         "/settings/update-password",
         "/settings/update-profile",
         "/settings/"
@@ -310,11 +360,17 @@ export const routeTree = rootRoute
     "/auth/forgot-password": {
       "filePath": "auth/forgot-password.route.lazy.tsx"
     },
+    "/auth/request-otp": {
+      "filePath": "auth/request-otp.route.lazy.tsx"
+    },
     "/auth/sign-in": {
       "filePath": "auth/sign-in.route.lazy.tsx"
     },
     "/auth/sign-up": {
       "filePath": "auth/sign-up.route.lazy.tsx"
+    },
+    "/auth/verify-otp": {
+      "filePath": "auth/verify-otp.route.lazy.tsx"
     },
     "/settings/update-password": {
       "filePath": "settings/update-password.route.lazy.tsx"
