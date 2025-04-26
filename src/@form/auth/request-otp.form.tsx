@@ -1,12 +1,10 @@
 import { useForm } from '@mantine/form';
-import { Button, Group, Text, Input } from '@mantine/core';
+import { Button, Group, Text, Input, TextInput } from '@mantine/core';
 import { useState, useEffect } from 'react';
-import InputPhoneCountryCode from '@ui/input-phone-country-code.ui';
 
 export default function FormRequestOtp() {
   const $form = useForm({
     initialValues: {
-      user_phone_country_code: '+212', // default Morocco
       phone: '',
     },
     validate: {
@@ -35,20 +33,17 @@ export default function FormRequestOtp() {
   const handle_submit = (values: typeof $form.values) => {
     set_timer(30);
     console.log({
-      user_phone_country_code: values.user_phone_country_code,
       user_phone: values.phone,
     });
-    // TODO: Implement OTP request logic
   };
 
   return (
     <form onSubmit={$form.onSubmit(handle_submit)}>
-      <InputPhoneCountryCode
+      <TextInput
         className={`mb-md ${timer > 0 ? 'bg-gray-100' : 'bg-white'}`}
-        countryCode={$form.values.user_phone_country_code}
-        phone={$form.values.phone}
-        onCountryCodeChange={(val) => $form.setFieldValue('user_phone_country_code', val || '+212')}
-        onPhoneChange={(val) => $form.setFieldValue('phone', val)}
+        placeholder="Phone Number"
+        value={$form.values.phone}
+        onChange={(e) => $form.setFieldValue('phone', e.currentTarget.value)}
         error={$form.errors.phone ? String($form.errors.phone) : undefined}
         disabled={timer > 0}
         label="Phone Number"

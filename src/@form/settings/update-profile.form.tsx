@@ -1,7 +1,6 @@
 import { TextInput, Button, Group, Avatar, FileButton, Stack, Text, Input } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
-import InputPhoneCountryCode from '@ui/input-phone-country-code.ui';
 
 export default function FormUpdateProfile() {
   const [$avatar, $_avatar] = useState<File | null>(null);
@@ -11,7 +10,6 @@ export default function FormUpdateProfile() {
       first_name: 'John',
       last_name: 'Doe',
       email: 'john@example.com',
-      user_phone_country_code: '+212',
       phone: '612345678',
       location: 'New York, USA',
       bio: 'Passionate full-stack developer...',
@@ -30,7 +28,6 @@ export default function FormUpdateProfile() {
 
   const handle_submit = (values: typeof $form.values) => {
     console.log({
-      user_phone_country_code: values.user_phone_country_code,
       user_phone: values.phone,
       first_name: values.first_name,
       last_name: values.last_name,
@@ -39,7 +36,6 @@ export default function FormUpdateProfile() {
       bio: values.bio,
       avatar: $avatar,
     });
-    // TODO: Implement update profile logic
   };
 
   return (
@@ -81,14 +77,12 @@ export default function FormUpdateProfile() {
           {...$form.getInputProps('email')}
         />
 
-        <InputPhoneCountryCode
-          className="bg-white"
-          countryCode={$form.values.user_phone_country_code}
-          phone={$form.values.phone}
-          onCountryCodeChange={(val) => $form.setFieldValue('user_phone_country_code', val || '+212')}
-          onPhoneChange={(val) => $form.setFieldValue('phone', val)}
-          error={$form.errors.phone ? String($form.errors.phone) : undefined}
+        <TextInput
           label="Phone"
+          placeholder="Phone Number"
+          value={$form.values.phone}
+          onChange={(e) => $form.setFieldValue('phone', e.currentTarget.value)}
+          error={$form.errors.phone ? String($form.errors.phone) : undefined}
         />
 
         <TextInput

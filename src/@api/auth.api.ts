@@ -17,15 +17,14 @@ async function api_sign_up({ user_phone_country_code, user_phone, user_first_nam
   return res.json();
 }
 
-async function api_sign_in({ user_phone_country_code, user_phone, user_password }: {
-  user_phone_country_code: string;
+async function api_sign_in({ user_phone, user_password }: {
   user_phone: string;
   user_password: string;
 }) {
   const res = await fetch(`${API_BASE}${AUTH_PATH}/sign-in`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ user_phone_country_code, user_phone, user_password })
+    body: JSON.stringify({ user_phone, user_password })
   });
   if (!res.ok) throw new Error('Sign in failed');
   return res.json();

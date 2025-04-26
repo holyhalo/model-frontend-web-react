@@ -5,9 +5,12 @@
 - Vite 
 - React 
 - Tailwind 
-- Shadcn UI 
+- Shadcn UI (With Vite)
 - TanStack React Router 
 - TanStack React Query 
+
+## cli:
+- use bun, don't use npm or any other package manager
 
 ## Styling:
 - use tailwind classes
@@ -21,11 +24,12 @@
 
 ## File naming:
 - Always kebab-case
-- Api: <module-name>.api.tsx
-- Lang: <file-name>.lang.tsx
-- Layouts: <component-name>.layout.tsx
-- Forms: <component-name>.form.tsx
-- Routes: <component-name>.route.tsx or component-name>.route.lazy.tsx for lazy, (except __root file, don't add any suffix)
+- @api: <module-name>.api.tsx
+- @lang: <file-name>.lang.tsx
+- @layout: <component-name>.layout.tsx
+- @form: <component-name>.form.tsx
+- @ui: <component-name>.ui.tsx
+- @routes: <component-name>.route.tsx or component-name>.route.lazy.tsx for lazy, (except __root file, don't add any suffix)
 
 ## Code naming:
 - Components: PascalCase with prefix based on type:

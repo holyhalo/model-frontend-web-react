@@ -1,6 +1,5 @@
 import { TextInput, PasswordInput, Button, Group, Text, Input } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import InputPhoneCountryCode from '@ui/input-phone-country-code.ui';
 
 export default function FormSignUp() {
   const $form = useForm({
@@ -8,7 +7,6 @@ export default function FormSignUp() {
       first_name: '',
       last_name: '',
       email: '',
-      user_phone_country_code: '+212', // default Morocco
       phone: '',
       password: '',
     },
@@ -46,7 +44,6 @@ export default function FormSignUp() {
 
   const handle_submit = (values: typeof $form.values) => {
     console.log({
-      user_phone_country_code: values.user_phone_country_code,
       user_phone: values.phone,
       user_first_name: values.first_name,
       user_last_name: values.last_name,
@@ -91,14 +88,18 @@ export default function FormSignUp() {
         {...$form.getInputProps('email')}
       />
 
-      <InputPhoneCountryCode
-        className="bg-white"
-        countryCode={$form.values.user_phone_country_code}
-        phone={$form.values.phone}
-        onCountryCodeChange={(val) => $form.setFieldValue('user_phone_country_code', val || '+212')}
-        onPhoneChange={(val) => $form.setFieldValue('phone', val)}
-        error={$form.errors.phone ? String($form.errors.phone) : undefined}
+      <TextInput
+        withAsterisk={false}
         label="Phone Number"
+        placeholder="Phone Number"
+        mb="md"
+        classNames={{
+          input: 'bg-white h-[2.8125rem] text-base',
+          label: 'text-sm mb-1'
+        }}
+        value={$form.values.phone}
+        onChange={(e) => $form.setFieldValue('phone', e.currentTarget.value)}
+        error={$form.errors.phone ? String($form.errors.phone) : undefined}
       />
 
       <PasswordInput
