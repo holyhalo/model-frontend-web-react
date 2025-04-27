@@ -1,9 +1,9 @@
+import { useState, useEffect } from 'react';
 import { Group, ActionIcon, Menu, Avatar, Burger } from '@mantine/core';
 import { Link, useRouter } from '@tanstack/react-router';
 import { X } from 'lucide-react';
-import AppLogo from './app-logo.layout';
-import { useState, useEffect } from 'react';
-import AppLeft from './app-left.layout';
+import AppLogo from './logo.app';
+import AppLeft from './left.app';
 
 export default function AppHeader() {
   const [opened, setOpened] = useState(false);

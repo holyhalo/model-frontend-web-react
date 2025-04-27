@@ -1,8 +1,8 @@
 import { createRootRoute, redirect } from '@tanstack/react-router'
-import AppHeader from '@layout/app-header.layout'
-import AppNavbar from '@layout/app-left.layout'
-import AppRight from '@layout/app-right.layout'
-import AppBody from '@layout/app-body.layout'
+import AppHeader from '@app/header.app'
+import AppNavbar from '@app/left.app'
+import AppRight from '@app/right.app'
+import AppBody from '@app/body.app'
 
 export const Route = createRootRoute({
   beforeLoad: ({ location }) => {

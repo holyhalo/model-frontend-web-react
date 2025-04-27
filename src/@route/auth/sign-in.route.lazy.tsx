@@ -1,7 +1,7 @@
 import { createLazyFileRoute, Link } from '@tanstack/react-router';
 import { Container, Anchor, Box } from '@mantine/core';
-import FormSignIn from '@form/auth/sign-in.form';
-import AppLogo from '@layout/app-logo.layout';
+import FormSignIn from '@/@view/@form/auth/sign-in.form';
+import AppLogo from '@app/logo.app';
 
 export const Route = createLazyFileRoute('/auth/sign-in')({
   component: () => {

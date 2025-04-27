@@ -1,6 +1,6 @@
 import { createLazyFileRoute, Link } from '@tanstack/react-router';
 import { Container, Title, Text, Anchor } from '@mantine/core';
-import FormForgotPassword from '@form/auth/forgot-password.form';
+import FormForgotPassword from '@/@view/@form/auth/forgot-password.form';
 
 export const Route = createLazyFileRoute('/auth/forgot-password')({
   component: () => {

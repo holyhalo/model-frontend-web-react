@@ -1,4 +1,4 @@
-import AppLogo from "./app-logo.layout"
+import AppLogo from "./logo.app"
 import { Link, useLocation } from "@tanstack/react-router"
 import { CircleUser, Coins, Gift, Home, Landmark, Palmtree, Settings, Telescope, Trophy, Users } from "lucide-react"
 import { Accordion } from "@mantine/core"

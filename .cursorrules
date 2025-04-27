@@ -15,6 +15,7 @@
 ## Styling:
 - use tailwind classes
 - Don't use px, Use rem instead
+- Don't use * in the required inputs
 
 ## Query and API:
 - use tanstack react query
@@ -26,17 +27,21 @@
 - Always kebab-case
 - @api: <module-name>.api.tsx
 - @lang: <file-name>.lang.tsx
+- @app: <component-name>.app.tsx
 - @layout: <component-name>.layout.tsx
 - @form: <component-name>.form.tsx
 - @ui: <component-name>.ui.tsx
-- @routes: <component-name>.route.tsx or component-name>.route.lazy.tsx for lazy, (except __root file, don't add any suffix)
+- @route: <route-name>.route.tsx or route-name>.route.lazy.tsx for lazy, (except __root file, don't add any suffix)
 
 ## Code naming:
 - Components: PascalCase with prefix based on type:
-  - Forms: Form[Name] (FormSignUp)
-  - Layouts: App[Name] (AppHeader)
+  - App: App[Name] (AppHeader)
+  - Layout: Layout[Name] (LayoutProfileCard)
+  - Form: Form[Name] (FormSignUp)
+  - UI: UI[Name] (UIButton)
 - Functions/Variables: snake_case with prefix based on type: 
-  - Api: api_[module-name] (api_user)
+  - api: api_[module-name] (api_user_find_all)
+  - lib: lib_[module-name] (lib_countries)
   - events: [event-name]_[usecase] (submit_form_user, click_button_sign_in)
 - States: $prefix ($user)
 - Setters: $_prefix ($_user)
@@ -47,14 +52,15 @@
 
 ## Import Statements
 - Use default exports for Components, Libs, Forms, etc....
-- Path Aliases: Use aliases defined in `tsconfig.json` for local module imports:
-  - `@api/*`
-  - `@form/*`
-  - `@lib/*`
-  etc...
-- Import Prefixes:
-  - Form: `Form<FormName>`
-  - layout: `layout_<LayoutName>`
+- Path Aliases: Use aliases defined in `vite.config.ts` for local module imports:
+
+- Import Prefixes Components:
+  - app: `App<FormName>`
+  - form: `Form<FormName>`
+  - layout: `Layout<LayoutName>`
+  - ui: `UI<FormName>`
+
+- Import Prefixes Functions/Libs:
   - lib: `lib_<lib_name>`
   - api: `api_<api_name>` (default import)
   etc...

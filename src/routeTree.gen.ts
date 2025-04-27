@@ -12,7 +12,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 // Import Routes
 
-import { Route as rootRoute } from './@routes/__root'
+import { Route as rootRoute } from './@route/__root'
 
 // Create Virtual Routes
 
@@ -41,27 +41,27 @@ const ProfileRouteLazyRoute = ProfileRouteLazyImport.update({
   path: '/profile',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/profile.route.lazy').then((d) => d.Route),
+  import('./@route/profile.route.lazy').then((d) => d.Route),
 )
 
 const AboutRouteLazyRoute = AboutRouteLazyImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./@routes/about.route.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./@route/about.route.lazy').then((d) => d.Route))
 
 const IndexRouteLazyRoute = IndexRouteLazyImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./@routes/index.route.lazy').then((d) => d.Route))
+} as any).lazy(() => import('./@route/index.route.lazy').then((d) => d.Route))
 
 const SettingsIndexRouteLazyRoute = SettingsIndexRouteLazyImport.update({
   id: '/settings/',
   path: '/settings/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/settings/index.route.lazy').then((d) => d.Route),
+  import('./@route/settings/index.route.lazy').then((d) => d.Route),
 )
 
 const SettingsUpdateProfileRouteLazyRoute =
@@ -70,7 +70,7 @@ const SettingsUpdateProfileRouteLazyRoute =
     path: '/settings/update-profile',
     getParentRoute: () => rootRoute,
   } as any).lazy(() =>
-    import('./@routes/settings/update-profile.route.lazy').then((d) => d.Route),
+    import('./@route/settings/update-profile.route.lazy').then((d) => d.Route),
   )
 
 const SettingsUpdatePasswordRouteLazyRoute =
@@ -79,7 +79,7 @@ const SettingsUpdatePasswordRouteLazyRoute =
     path: '/settings/update-password',
     getParentRoute: () => rootRoute,
   } as any).lazy(() =>
-    import('./@routes/settings/update-password.route.lazy').then(
+    import('./@route/settings/update-password.route.lazy').then(
       (d) => d.Route,
     ),
   )
@@ -89,7 +89,7 @@ const AuthVerifyOtpRouteLazyRoute = AuthVerifyOtpRouteLazyImport.update({
   path: '/auth/verify-otp',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/auth/verify-otp.route.lazy').then((d) => d.Route),
+  import('./@route/auth/verify-otp.route.lazy').then((d) => d.Route),
 )
 
 const AuthSignUpRouteLazyRoute = AuthSignUpRouteLazyImport.update({
@@ -97,7 +97,7 @@ const AuthSignUpRouteLazyRoute = AuthSignUpRouteLazyImport.update({
   path: '/auth/sign-up',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/auth/sign-up.route.lazy').then((d) => d.Route),
+  import('./@route/auth/sign-up.route.lazy').then((d) => d.Route),
 )
 
 const AuthSignInRouteLazyRoute = AuthSignInRouteLazyImport.update({
@@ -105,7 +105,7 @@ const AuthSignInRouteLazyRoute = AuthSignInRouteLazyImport.update({
   path: '/auth/sign-in',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/auth/sign-in.route.lazy').then((d) => d.Route),
+  import('./@route/auth/sign-in.route.lazy').then((d) => d.Route),
 )
 
 const AuthRequestOtpRouteLazyRoute = AuthRequestOtpRouteLazyImport.update({
@@ -113,7 +113,7 @@ const AuthRequestOtpRouteLazyRoute = AuthRequestOtpRouteLazyImport.update({
   path: '/auth/request-otp',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
-  import('./@routes/auth/request-otp.route.lazy').then((d) => d.Route),
+  import('./@route/auth/request-otp.route.lazy').then((d) => d.Route),
 )
 
 const AuthForgotPasswordRouteLazyRoute =
@@ -122,7 +122,7 @@ const AuthForgotPasswordRouteLazyRoute =
     path: '/auth/forgot-password',
     getParentRoute: () => rootRoute,
   } as any).lazy(() =>
-    import('./@routes/auth/forgot-password.route.lazy').then((d) => d.Route),
+    import('./@route/auth/forgot-password.route.lazy').then((d) => d.Route),
   )
 
 // Populate the FileRoutesByPath interface

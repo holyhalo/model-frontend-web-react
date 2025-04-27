@@ -25,13 +25,14 @@
     /* Path Aliases */
     "baseUrl": ".",
     "paths": {
-      "@api/*": ["src/@api/*"],
-      "@layout/*": ["src/@layout/*"],
-      "@lib/*": ["src/@lib/*"],
-      "@routes/*": ["src/@routes/*"],
-      "@lang/*": ["src/@lang/*"],
-      "@form/*": ["src/@form/*"],
-      "@ui/*": ["src/@ui/*"]
+      "@/*": ["./src/*"],
+      "@api/*": ["./src/@api/*"],
+      "@lang/*": ["./src/@lang/*"],
+      "@lib/*": ["./src/@lib/*"],
+      "@route/*": ["./src/@route/*"],
+      "@app/*": ["./src/@view/@app/*"],
+      "@ui/*": ["./src/@view/@ui/*"],
+      "@form/*": ["./src/@view/@form/*"]
     },
     "types": ["bun-types"]
   },

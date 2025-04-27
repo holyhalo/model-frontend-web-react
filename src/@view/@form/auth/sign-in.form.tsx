@@ -25,6 +25,8 @@ export default function FormSignIn() {
       user_phone: values.phone,
       user_password: values.password,
     });
+    localStorage.setItem('id', '1');
+    window.location.href = '/';
   };
 
   return (

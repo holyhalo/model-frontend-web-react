@@ -40,6 +40,7 @@ export default function FormVerifyOtp() {
           )}
           <Button
             type="submit"
+            fullWidth
             className="w-full py-3.5 px-4 font-black uppercase"
           >
             Verify OTP

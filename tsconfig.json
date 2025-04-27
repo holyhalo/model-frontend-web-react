@@ -1,4 +1,17 @@
 {
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@api/*": ["./src/@api/*"],
+      "@lang/*": ["./src/@lang/*"],
+      "@lib/*": ["./src/@lib/*"],
+      "@route/*": ["./src/@route/*"],
+      "@app/*": ["./src/@view/@app/*"],
+      "@ui/*": ["./src/@view/@ui/*"],
+      "@form/*": ["./src/@view/@form/*"]
+    }
+  },
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },

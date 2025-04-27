@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import AppLogo from "@layout/app-logo.layout"
+import AppLogo from "@app/logo.app"
 
 export const Route = createLazyFileRoute('/')({
   component: () => (

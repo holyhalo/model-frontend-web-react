@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router';
-import FormUpdatePassword from '@form/settings/update-password.form';
+import FormUpdatePassword from '@/@view/@form/settings/update-password.form';
 
 export const Route = createLazyFileRoute('/settings/update-password')({
   component: () => {
